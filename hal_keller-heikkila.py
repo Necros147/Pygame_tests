@@ -39,7 +39,12 @@ hmw = [
     'flavor', 
     'needle', 
     'biological', 
-    'five'
+    'five',
+    'evaporate',
+    'Pneumonoultramicroscopicsilicovolcanoconiosis',
+    'tough',
+    'comma',
+    'gatorade'
     ]
     
 print('Hello, my name is HAL')
@@ -181,7 +186,6 @@ elif topic.lower() == 'hangman':
      fails = 0
      ind = 0
      hmw_s = random.choice(hmw)
-     print(fails, ind, hmw_s)
      word_length = len(hmw_s) + 1
      blnk = ['?']
      while len(blnk) != len(hmw_s):
