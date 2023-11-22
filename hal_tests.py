@@ -105,9 +105,6 @@ clock = p.time.Clock()
 
 white = p.Color(255, 255, 255)
 navy = p.Color(0, 0, 100)
-paddlePx = 20
-ballX = 20
-ballY = 500
 #Main Loop
 while True:
     for event in p.event.get():
@@ -117,7 +114,7 @@ while True:
                
     #Classes
     class Ball:
-        def __init__(self,surface, color, ballX, ballY, heightB, widthB):
+        def __init__(self, surface, color, ballX, ballY, heightB, widthB):
              self.surface = surface
              self.color = color
              self.ballX = ballX
@@ -144,10 +141,9 @@ while True:
             if ballX == 1200:
                 ballDirection[0] = 0
         
-        def collide(selfCollide, surface, color):
-            selfCollide = p.draw.rect(surface, color, (ballX + 2, ballY + 2, heightB + 5, widthB + 5))
-            Pcollide = p.rect.colliderect(self, paddleP)
-            Ecollide = p.rect.colliderect(self, paddleE)
+        def collide(self, selfCollide, surface, color):
+            p.draw.rect(surface, color, (ballX + 2, ballY + 2, heightB + 5, widthB + 5))
+            p.rect.colliderect(self, paddleP)
             if Pcollide == True:
                 if ballDirection[0] == 0 and ballDirection[1] == 0:
                     ballDirection[1] = 1
@@ -155,7 +151,7 @@ while True:
                     ballDirection[1] = 1
     
     class Paddle:
-        def __init__(self,surface, color, paddleX, paddleY, heightP, widthP):
+        def __init__(self, surface, color, paddleX, paddleY, heightP, widthP):
              self.surface = surface
              self.color = color
              self.paddleX = paddleX
@@ -164,38 +160,38 @@ while True:
              self.widthP = widthP
         
         def constructp(self, surface, color, paddleX, paddleY, heightP, widthP):
-            self = p.draw.rect(surface, color, (paddleY, paddleY, heightP, widthP))
+            p.draw.rect(surface, color, (paddleX, paddleY, heightP, widthP))
             
-        def paddleP_movement():
-            paddlePx = 20
+        def paddleP_movement(self):
             keys = p.key.get_pressed()
             if keys[p.K_d]:
-                paddlePx += 0.5
+                paddleX += 0.5
             if keys[p.K_a]:
-                paddlePx -= 0.5
-            if paddlePx < 0:
-                paddlePx = 0
-            elif paddlePx > 1000:
-                paddlePx = 1000
+                paddleX -= 0.5
+            if paddleX < 0:
+                paddleX = 0
+            elif paddleX > 1000:
+                paddleX = 1000
             else:
-                p.Rect.move(paddleP, (paddlePx, 800))
+                p.Rect.move(self, (paddleX, 800))
         
     
     #Background
     screen.fill(navy)
     
     #Graphics Stuff
-    paddleP = Paddle.constructp( Paddle, screen, white, 20, 800, 50, 300)
-    ball = Ball.constructb( Ball, screen, white, 20, 400, 20, 20)
-    
+    paddleP = Paddle(screen, white, 20, 800, 300, 20)
+    ball = Ball(screen, white, 20, 400, 20, 20)
+    ball.constructb(screen, white, (20, 400, 20, 20))
+    paddleP.constructp(screen, white, (20, 800, 300, 20))
 
 
 
     #Logical Updates
     for i in range(60):
-        Paddle.paddleP_movement()
-        Ball.ballMovement
-        Ball.collide
+        paddleP.paddleP_movement()
+        ball.ballMovement()
+        ball.collide()
             
     
     p.display.flip()
