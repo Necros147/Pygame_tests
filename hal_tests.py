@@ -52,8 +52,8 @@
 #non-Turtle Graphics
 import random
 import pygame as p
-from class_Ball.py import Ball
-from class_Paddle.py import Paddle
+from class_Ball import *
+from class_Paddle import *
 from pygame.locals import *
 
 # Logo, Title, and initialization
@@ -63,6 +63,7 @@ clock = p.time.Clock()
 
 white = p.Color(255, 255, 255)
 navy = p.Color(0, 0, 100)
+black = p.Color(0, 0, 0)
 # Main Loop
 while True:
     for event in p.event.get():
@@ -71,18 +72,20 @@ while True:
             raise SystemExit
 
     # Background
-    screen.fill(navy)
+    screen.fill(black)
 
     # Graphics Stuff
-    paddle_player = Paddle(screen, white, 20, 800, 300, 20)
-    ball = Ball(screen, white, 20, 400, 20, 20)
-    ball.draw()
+    paddle_player = Paddle(screen, white, 450, 800, 300, 20)
+    paddle_ai = Paddle(screen, white, 450, 80, 300, 20)
+    ball_one = Ball(screen, white, 580, 400, 20, 20)
+    ball_one.draw()
     paddle_player.draw()
+    paddle_ai.draw()
 
     # Logical Updates
     for i in range(60):
-        paddle_player.paddlePmovement()
-        ball.ballMovement()
+        paddle_player.paddleMovement()
+        # ~ ball.ballMovement()
 #       ball.collide()
 
     p.display.flip()
