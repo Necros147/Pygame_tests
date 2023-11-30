@@ -83,7 +83,7 @@ while True:
     # Logical Updates
     for i in range(60):
         paddle_player.paddle_movement()
-        # ~ ball.ballMovement()
+#        ball.ball_movement()
 #       ball.collide()
 
     p.display.flip()
