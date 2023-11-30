@@ -1,19 +1,23 @@
-import random
 import pygame as p
 
+
 class Paddle:
+    ''' Class for Pong game paddle '''
     def __init__(self, surface, color, x, y, height, width):
         self.surface = surface
         self.color = color
-        self.paddleX = paddleX
-        self.paddleY = paddleY
-        self.heightP = heightP
-        self.widthP = widthP
+        self.x = x
+        self.y = y
+        self.height = height
+        self.width = width
 
     def draw(self):
-        p.draw.rect(self.surface, self.color, (self.paddleX, self.paddleY, self.heightP, self.widthP))
+        ''' puts the Pong paddle on the screen '''
+        global paddle
+        paddle = p.draw.rect(self.surface, self.color, (self.x, self.y, self.height, self.width))
 
-    def paddlePmovement(self):
+    def paddle_movement(self):
+        ''' Movement for the players paddle'''
         keys = p.key.get_pressed()
         if keys[p.K_d]:
             self.x += 0.5
