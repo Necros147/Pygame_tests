@@ -1,17 +1,19 @@
+import random
+import pygame as p
+
 class Paddle:
     def __init__(self, surface, color, x, y, height, width):
         self.surface = surface
         self.color = color
-        self.x = x
-        self.y = y
-        self.height = height
-        self.width = width
+        self.paddleX = paddleX
+        self.paddleY = paddleY
+        self.heightP = heightP
+        self.widthP = widthP
 
     def draw(self):
-        global paddle
-        paddle = p.draw.rect(self.surface, self.color, (self.x, self.y, self.height, self.width))
+        p.draw.rect(self.surface, self.color, (self.paddleX, self.paddleY, self.heightP, self.widthP))
 
-    def paddle_movement(self):
+    def paddlePmovement(self):
         keys = p.key.get_pressed()
         if keys[p.K_d]:
             self.x += 0.5
