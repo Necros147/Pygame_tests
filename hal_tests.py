@@ -1,4 +1,4 @@
-import random, pygame, guizero
+import random, pygame
 from class_ball import Ball
 from class_paddle import Paddle
 from pygame.locals import *
