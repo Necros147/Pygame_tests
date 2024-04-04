@@ -1,4 +1,4 @@
-import random, pygame
+import pygame
 from class_ball import Ball
 from class_paddle import Paddle
 from pygame.locals import *
